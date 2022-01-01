@@ -36,63 +36,63 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-  <v-main>
+    <NavBar/>
     <v-container>
-      <v-navigation-drawer permanent expand-on-hover>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Admin
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            Empower your managing
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list
-        dense
-        nav
-      >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
+      <v-navigation-drawer v-show="isShow" permanent expand-on-hover>
+        <v-list-item >
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title class="text-h6">
+              Manager
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              Empower your managing
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+        <v-divider></v-divider>
+
+        <v-list
+          dense
+          nav
+        >
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
     </v-navigation-drawer>
     </v-container>
-    <Home/>
-
-  </v-main>
-
+    <v-button @click="isShow =! isShow"> Manager?</v-button>
+ <Home/>
   </v-app>
 </template>
 
 <script>
 import Home from './components/Home';
+import NavBar from './components/NavBar';
   export default {
     name: 'App',
     components: {
     Home,
+    NavBar,
   },
     data () {
       return {
+        isShow: true,
         items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard' },
           { title: 'Photos', icon: 'mdi-image' },
           { title: 'Manage Team', icon: 'mdi-account-group-outline'},
-          {title: 'Manage Transaction', icon: 'mdi-cash-multiple'}
+          { title: 'Manage Transaction', icon: 'mdi-cash-multiple'}
         ],
         right: null,
       }
